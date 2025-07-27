@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Navbar = () => {
+const Navbar = ({ onNavigate }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
 
@@ -17,10 +17,10 @@ const Navbar = () => {
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-zinc-800 hover:text-zinc-600 px-3 py-2 text-sm font-medium transition-colors duration-200">Home</a>
-            <a href="#" className="text-zinc-600 hover:text-zinc-800 px-3 py-2 text-sm font-medium transition-colors duration-200">About</a>
-            <a href="#" className="text-zinc-600 hover:text-zinc-800 px-3 py-2 text-sm font-medium transition-colors duration-200">Products</a>
-            <a href="#" className="text-zinc-600 hover:text-zinc-800 px-3 py-2 text-sm font-medium transition-colors duration-200">Contact</a>
+            <button onClick={() => onNavigate && onNavigate('home')} className="text-zinc-800 hover:text-zinc-600 px-3 py-2 text-sm font-medium transition-colors duration-200 bg-transparent border-none focus:outline-none">Home</button>
+            <button onClick={() => onNavigate && onNavigate('about')} className="text-zinc-600 hover:text-zinc-800 px-3 py-2 text-sm font-medium transition-colors duration-200 bg-transparent border-none focus:outline-none">About</button>
+            <button onClick={() => onNavigate && onNavigate('products')} className="text-zinc-600 hover:text-zinc-800 px-3 py-2 text-sm font-medium transition-colors duration-200 bg-transparent border-none focus:outline-none">Products</button>
+            <button onClick={() => onNavigate && onNavigate('contact')} className="text-zinc-600 hover:text-zinc-800 px-3 py-2 text-sm font-medium transition-colors duration-200 bg-transparent border-none focus:outline-none">Contact</button>
           </div>
 
           {/* Search and User */}

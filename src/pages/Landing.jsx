@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../components/Navbar';
 
 const Landing = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -41,8 +40,6 @@ const Landing = () => {
 
   return (
     <div className="min-h-screen bg-zinc-100">
-      <Navbar />
-
       {/* Hero Section with Slider */}
       <div className="relative h-[calc(100vh-64px)] overflow-hidden">
         {heroSlides.map((slide, index) => (
