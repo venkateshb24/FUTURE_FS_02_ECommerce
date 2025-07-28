@@ -1,8 +1,21 @@
 import React, { useState } from 'react';
 
-const Navbar = ({ onNavigate }) => {
+const Navbar = ({ onNavigate, search, onSearch, cart }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
+
+  const handleInputChange = (e) => {
+    onSearch && onSearch(e.target.value, false);
+  };
+
+  const handleInputKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      onSearch && onSearch(e.target.value, true);
+    }
+  };
+
+  // Calculate total cart quantity
+  const cartCount = cart ? cart.reduce((sum, item) => sum + item.quantity, 0) : 0;
 
   return (
     <nav className="bg-white shadow-lg border-b border-zinc-100 sticky top-0 z-50">
@@ -23,9 +36,9 @@ const Navbar = ({ onNavigate }) => {
             <button onClick={() => onNavigate && onNavigate('contact')} className="text-zinc-600 hover:text-zinc-800 px-3 py-2 text-sm font-medium transition-colors duration-200 bg-transparent border-none focus:outline-none">Contact</button>
           </div>
 
-          {/* Search and User */}
+          {/* Search, Cart, and User */}
           <div className="flex items-center space-x-6">
-            {/* Beautiful Search Bar */}
+            {/* Navbar Search Bar (controlled by App.js) */}
             <div className="relative hidden sm:block">
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                 <svg className="h-5 w-5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -35,9 +48,28 @@ const Navbar = ({ onNavigate }) => {
               <input
                 type="text"
                 placeholder="Search for products..."
+                value={search}
+                onChange={handleInputChange}
+                onKeyDown={handleInputKeyDown}
                 className="w-80 pl-12 pr-4 py-3 bg-zinc-50 border border-zinc-200 rounded-full focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:border-transparent focus:bg-white transition-all duration-300 text-zinc-700 placeholder-zinc-500"
               />
             </div>
+
+            {/* Cart Icon with Badge */}
+            <button
+              className="relative p-2 text-zinc-600 hover:text-zinc-900 transition-colors duration-200"
+              onClick={() => onNavigate && onNavigate('cart')}
+              aria-label="View cart"
+            >
+              <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01" />
+              </svg>
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-teal-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold shadow">
+                  {cartCount}
+                </span>
+              )}
+            </button>
 
             {/* User Profile Icon with Dropdown */}
             <div className="relative">

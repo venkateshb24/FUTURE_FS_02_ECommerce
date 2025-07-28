@@ -52,8 +52,7 @@ const specsMap = {
   'SanDisk 1TB SSD': { storage: '1TB', color: 'Gray' },
 };
 
-const Products = () => {
-  const [search, setSearch] = useState('');
+const Products = ({ search, setSearch, onAddToCart }) => {
   const [activeCategory, setActiveCategory] = useState('All');
 
   const filteredProducts = productsData.filter((product) => {
@@ -144,7 +143,10 @@ const Products = () => {
                       ★ {product.rating}
                     </span>
                   </div>
-                  <button className="mt-4 w-full bg-zinc-900 hover:bg-zinc-800 text-white py-2.5 rounded-lg font-semibold shadow transition-all duration-200 text-base tracking-wide">
+                  <button
+                    className="mt-4 w-full bg-zinc-900 hover:bg-zinc-800 text-white py-2.5 rounded-lg font-semibold shadow transition-all duration-200 text-base tracking-wide"
+                    onClick={() => onAddToCart(product)}
+                  >
                     Add to Cart
                   </button>
                 </div>
