@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import productsData from '../data/products';
+import ProductDetailsModal from '../components/ProductDetailsModal';
+import ProductPage from './ProductPage';
 
 const categories = [
   'All',
@@ -54,6 +56,10 @@ const specsMap = {
 
 const Products = ({ search, setSearch, onAddToCart }) => {
   const [activeCategory, setActiveCategory] = useState('All');
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalProduct, setModalProduct] = useState(null);
+  const [view, setView] = useState('grid'); // 'grid' or 'details'
+  const [pageProduct, setPageProduct] = useState(null);
 
   const filteredProducts = productsData.filter((product) => {
     const matchesCategory =
@@ -64,12 +70,32 @@ const Products = ({ search, setSearch, onAddToCart }) => {
     return matchesCategory && matchesSearch;
   });
 
+  // Helper to get full specs for modal/page
+  const getProductWithSpecs = (product) => ({
+    ...product,
+    specs: specsMap[product.name],
+    description: product.description,
+  });
+
+  if (view === 'details' && pageProduct) {
+    return (
+      <div className="min-h-[calc(100vh-64px)] bg-zinc-100 py-10">
+        <button
+          className="ml-4 mb-6 px-4 py-2 bg-zinc-200 hover:bg-zinc-300 text-zinc-700 rounded-full font-medium shadow"
+          onClick={() => setView('grid')}
+        >
+          ← Back to Products
+        </button>
+        <ProductPage product={pageProduct} onAddToCart={onAddToCart} />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-[calc(100vh-64px)] bg-zinc-100 py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <h1 className="text-4xl font-bold text-zinc-900 mb-8 text-center">Shop Products</h1>
-
         {/* Search and Filters */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-10">
           {/* Search Bar */}
@@ -102,7 +128,6 @@ const Products = ({ search, setSearch, onAddToCart }) => {
             ))}
           </div>
         </div>
-
         {/* Product Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
           {filteredProducts.length === 0 ? (
@@ -112,6 +137,12 @@ const Products = ({ search, setSearch, onAddToCart }) => {
               <div
                 key={product.id}
                 className="group bg-white/80 backdrop-blur-md border border-zinc-200 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col items-center p-7 hover:-translate-y-2 hover:border-zinc-300"
+                onClick={e => {
+                  if (e.target.closest('button')) return;
+                  setPageProduct(getProductWithSpecs(product));
+                  setView('details');
+                }}
+                style={{ cursor: 'pointer' }}
               >
                 {/* Larger Centered Image */}
                 <div className="w-full flex justify-center mb-6">
@@ -145,7 +176,10 @@ const Products = ({ search, setSearch, onAddToCart }) => {
                   </div>
                   <button
                     className="mt-4 w-full bg-zinc-900 hover:bg-zinc-800 text-white py-2.5 rounded-lg font-semibold shadow transition-all duration-200 text-base tracking-wide"
-                    onClick={() => onAddToCart(product)}
+                    onClick={e => {
+                      e.stopPropagation();
+                      onAddToCart(product);
+                    }}
                   >
                     Add to Cart
                   </button>
@@ -155,6 +189,12 @@ const Products = ({ search, setSearch, onAddToCart }) => {
           )}
         </div>
       </div>
+      <ProductDetailsModal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        product={modalProduct}
+        onAddToCart={onAddToCart}
+      />
     </div>
   );
 };
