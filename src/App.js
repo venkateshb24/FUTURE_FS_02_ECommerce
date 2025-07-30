@@ -3,12 +3,16 @@ import Landing from './pages/Landing';
 import Products from './pages/Products';
 import Navbar from './components/Navbar';
 import CartSidebar from './components/CartSidebar';
+import LoginModal from './components/LoginModal';
+import { UserProvider, useUser } from './context/UserContext';
 
-function App() {
+function AppContent() {
   const productsRef = useRef(null);
   const [search, setSearch] = useState('');
   const [cart, setCart] = useState([]); // Shopping cart state
   const [cartSidebarOpen, setCartSidebarOpen] = useState(false);
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const { user, login, signup, logout } = useUser();
 
   const handleNavigate = (section) => {
     if (section === 'products' && productsRef.current) {
@@ -55,9 +59,36 @@ function App() {
     setCart((prevCart) => prevCart.filter((item) => item.id !== id));
   };
 
+  // Authentication handlers
+  const handleLogin = (userData) => {
+    const result = login(userData);
+    if (result.success) {
+      setLoginModalOpen(false);
+    }
+  };
+
+  const handleSignup = (userData) => {
+    const result = signup(userData);
+    if (result.success) {
+      setLoginModalOpen(false);
+    }
+  };
+
+  const handleLogout = () => {
+    logout();
+  };
+
   return (
     <>
-      <Navbar onNavigate={handleNavigate} search={search} onSearch={handleSearch} cart={cart} />
+      <Navbar 
+        onNavigate={handleNavigate} 
+        search={search} 
+        onSearch={handleSearch} 
+        cart={cart}
+        user={user}
+        onLoginClick={() => setLoginModalOpen(true)}
+        onLogout={handleLogout}
+      />
       <Landing />
       <div ref={productsRef} className="scroll-mt-16">
         <Products search={search} setSearch={setSearch} onAddToCart={handleAddToCart} />
@@ -69,7 +100,22 @@ function App() {
         onUpdateQty={handleUpdateQty}
         onRemove={handleRemove}
       />
+      <LoginModal
+        isOpen={loginModalOpen}
+        onClose={() => setLoginModalOpen(false)}
+        onLogin={handleLogin}
+        onSignup={handleSignup}
+      />
     </>
   );
 }
+
+function App() {
+  return (
+    <UserProvider>
+      <AppContent />
+    </UserProvider>
+  );
+}
+
 export default App;

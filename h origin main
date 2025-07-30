@@ -1,0 +1,5 @@
+[33m6191449[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m Refactor ProductPage: Replace specs badges with brief paragraph description
+[33m0526a68[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Add product details modal and product page for detailed view on product click
+[33m0b170c7[m  Add shopping cart sidebar with quantity controls, cart badge in navbar, and smooth integration. Users can now view, update, and remove items from cart.
+[33m7d941ce[m  Add products page with modern UI and navbar navigation, Implement product listing page with search, filters, and specs, Enable navigation to products page from navbar.
+[33mb85c09b[m feat: Add modern e-commerce landing page with professional UI and hero slider
