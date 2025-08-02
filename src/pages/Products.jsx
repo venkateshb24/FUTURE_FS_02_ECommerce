@@ -92,7 +92,7 @@ const Products = ({ search, setSearch, onAddToCart }) => {
   }
 
   return (
-    <div className="min-h-[calc(100vh-64px)] bg-zinc-100 py-10">
+    <div className="min-h-[calc(100vh-64px)] bg-zinc-100 py-10 pb-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <h1 className="text-4xl font-bold text-zinc-900 mb-8 text-center">Shop Products</h1>
