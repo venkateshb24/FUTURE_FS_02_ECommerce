@@ -42,14 +42,17 @@ All data (products, users, cart) is stored in `localStorage`. Orders and authent
 
 ## 📁 Folder Structure
 
+```txt
 src/
-├── assets/ # Product images
-├── components/ # Navbar, Footer, CartSidebar, Modals, etc.
-├── data/ # Product data (with images/specs)
-├── pages/ # Landing, Products, ProductPage, About, Checkout
+├── assets/          # Product images
+├── components/      # Navbar, Footer, CartSidebar, Modals, etc.
+├── data/            # Product data (with images/specs)
+├── pages/           # Landing, Products, ProductPage, About, Checkout
 ├── App.js
 ├── index.js
-└── index.css # Tailwind directives
+└── index.css        # Tailwind directives
+```
+
 
 ---
 

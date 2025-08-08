@@ -6,6 +6,7 @@ import Checkout from './pages/Checkout';
 import Navbar from './components/Navbar';
 import CartSidebar from './components/CartSidebar';
 import Footer from './components/Footer';
+import LoginModal from './components/LoginModal';
 
 function App() {
   const productsRef = useRef(null);
@@ -13,6 +14,7 @@ function App() {
   const [cart, setCart] = useState([]); // Shopping cart state
   const [cartSidebarOpen, setCartSidebarOpen] = useState(false);
   const [showCheckout, setShowCheckout] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   const handleNavigate = (section) => {
     if (section === 'products' && productsRef.current) {
@@ -78,9 +80,25 @@ function App() {
     alert('Thank you for your order!');
   };
 
+  const handleLoginClick = () => {
+    setShowLoginModal(true);
+  };
+
+  const handleLogin = (userData) => {
+    console.log('Login attempt:', userData);
+    // Implement actual login logic here
+    setShowLoginModal(false);
+  };
+
+  const handleSignup = (userData) => {
+    console.log('Signup attempt:', userData);
+    // Implement actual signup logic here
+    setShowLoginModal(false);
+  };
+
   return (
     <>
-      <Navbar onNavigate={handleNavigate} search={search} onSearch={handleSearch} cart={cart} />
+      <Navbar onNavigate={handleNavigate} search={search} onSearch={handleSearch} cart={cart} onLoginClick={handleLoginClick} />
       {showCheckout ? (
         <Checkout 
           cart={cart} 
@@ -105,6 +123,12 @@ function App() {
         onCheckout={handleCheckout}
       />
       <Footer />
+      <LoginModal
+        isOpen={showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+        onLogin={handleLogin}
+        onSignup={handleSignup}
+      />
     </>
   );
 }
