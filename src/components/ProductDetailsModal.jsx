@@ -57,7 +57,10 @@ const ProductDetailsModal = ({ open, onClose, product, onAddToCart }) => {
             )}
             {/* Description */}
             {product.description && (
-              <p className="text-zinc-700 text-base mb-2 max-w-md">{product.description}</p>
+              <div className="mb-4">
+                <h3 className="text-lg font-semibold text-zinc-900 mb-2">Product Description</h3>
+                <p className="text-zinc-700 text-base leading-relaxed">{product.description}</p>
+              </div>
             )}
             <button
               className="mt-4 w-full bg-zinc-900 hover:bg-zinc-800 text-white py-3 rounded-lg font-semibold shadow transition-all duration-200 text-lg tracking-wide"

@@ -22,17 +22,40 @@ const Navbar = ({ onNavigate, search, onSearch, cart, user, onLoginClick, onLogo
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-zinc-800 to-zinc-600 bg-clip-text text-transparent">
+            <button 
+              onClick={() => onNavigate && onNavigate('home')}
+              className="text-2xl font-bold bg-gradient-to-r from-zinc-800 to-zinc-600 bg-clip-text text-transparent hover:from-zinc-900 hover:to-zinc-700 transition-all duration-200 cursor-pointer"
+            >
               TechStore
-            </h1>
+            </button>
           </div>
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center space-x-8">
-            <button onClick={() => onNavigate && onNavigate('home')} className="text-zinc-800 hover:text-zinc-600 px-3 py-2 text-sm font-medium transition-colors duration-200 bg-transparent border-none focus:outline-none">Home</button>
-            <button onClick={() => onNavigate && onNavigate('about')} className="text-zinc-600 hover:text-zinc-800 px-3 py-2 text-sm font-medium transition-colors duration-200 bg-transparent border-none focus:outline-none">About</button>
-            <button onClick={() => onNavigate && onNavigate('products')} className="text-zinc-600 hover:text-zinc-800 px-3 py-2 text-sm font-medium transition-colors duration-200 bg-transparent border-none focus:outline-none">Products</button>
-            <button onClick={() => onNavigate && onNavigate('contact')} className="text-zinc-600 hover:text-zinc-800 px-3 py-2 text-sm font-medium transition-colors duration-200 bg-transparent border-none focus:outline-none">Contact</button>
+            <button 
+              onClick={() => onNavigate && onNavigate('home')} 
+              className="text-zinc-800 hover:text-zinc-600 px-3 py-2 text-sm font-medium transition-all duration-200 bg-transparent border-none focus:outline-none hover:bg-zinc-100 rounded-lg"
+            >
+              Home
+            </button>
+            <button onClick={() => {
+              const aboutSection = document.getElementById('about-section');
+              if (aboutSection) {
+                aboutSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }} className="text-zinc-600 hover:text-zinc-800 px-3 py-2 text-sm font-medium transition-all duration-200 bg-transparent border-none focus:outline-none hover:bg-zinc-100 rounded-lg">About</button>
+            <button 
+              onClick={() => onNavigate && onNavigate('products')} 
+              className="text-zinc-600 hover:text-zinc-800 px-3 py-2 text-sm font-medium transition-all duration-200 bg-transparent border-none focus:outline-none hover:bg-zinc-100 rounded-lg"
+            >
+              Products
+            </button>
+            <button onClick={() => {
+              const contactSection = document.getElementById('contact-section');
+              if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }} className="text-zinc-600 hover:text-zinc-800 px-3 py-2 text-sm font-medium transition-all duration-200 bg-transparent border-none focus:outline-none hover:bg-zinc-100 rounded-lg">Contact</button>
           </div>
 
           {/* Search, Cart, and User */}
@@ -56,7 +79,7 @@ const Navbar = ({ onNavigate, search, onSearch, cart, user, onLoginClick, onLogo
 
             {/* Cart Icon with Badge */}
             <button
-              className="relative p-2 text-zinc-600 hover:text-zinc-900 transition-colors duration-200"
+              className="relative p-2 text-zinc-600 hover:text-zinc-900 transition-all duration-200 hover:bg-zinc-100 rounded-lg"
               onClick={() => onNavigate && onNavigate('cart')}
               aria-label="View cart"
             >
@@ -74,7 +97,7 @@ const Navbar = ({ onNavigate, search, onSearch, cart, user, onLoginClick, onLogo
             <div className="relative">
               <button 
                 onClick={() => setShowUserMenu(!showUserMenu)}
-                className="flex items-center justify-center w-10 h-10 text-zinc-600 hover:text-zinc-800 transition-colors duration-200 p-2 rounded-full hover:bg-zinc-100"
+                className="flex items-center justify-center w-10 h-10 text-zinc-600 hover:text-zinc-800 transition-all duration-200 p-2 rounded-full hover:bg-zinc-100 hover:shadow-md"
               >
                 {user ? (
                   <div className="w-8 h-8 bg-gradient-to-r from-zinc-700 to-zinc-600 rounded-full flex items-center justify-center">
@@ -96,23 +119,29 @@ const Navbar = ({ onNavigate, search, onSearch, cart, user, onLoginClick, onLogo
                         <p className="text-sm font-medium text-zinc-900">{user.name}</p>
                         <p className="text-xs text-zinc-500">{user.email}</p>
                       </div>
-                      <a href="#" className="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-50 transition-colors duration-200">
+                      <button type="button" className="block w-full text-left px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-50 transition-colors duration-200">
                         <div className="flex items-center">
                           <svg className="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                           </svg>
                           Profile
                         </div>
-                      </a>
-                      <a href="#" className="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-50 transition-colors duration-200">
+                      </button>
+                      <button 
+                        onClick={() => {
+                          onNavigate('orders');
+                          setShowUserMenu(false);
+                        }}
+                        className="block w-full text-left px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-50 transition-colors duration-200"
+                      >
                         <div className="flex items-center">
                           <svg className="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                           </svg>
                           Orders
                         </div>
-                      </a>
-                      <a href="#" className="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-50 transition-colors duration-200">
+                      </button>
+                      <button type="button" className="block w-full text-left px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-50 transition-colors duration-200">
                         <div className="flex items-center">
                           <svg className="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
@@ -120,7 +149,7 @@ const Navbar = ({ onNavigate, search, onSearch, cart, user, onLoginClick, onLogo
                           </svg>
                           Settings
                         </div>
-                      </a>
+                      </button>
                       <div className="border-t border-zinc-100 mt-2 pt-2">
                         <button 
                           onClick={() => {

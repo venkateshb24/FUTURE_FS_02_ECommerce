@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CartSidebar = ({ open, onClose, cart, onUpdateQty, onRemove }) => {
+const CartSidebar = ({ open, onClose, cart, onUpdateQty, onRemove, onCheckout }) => {
   // Calculate subtotal
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
@@ -77,6 +77,7 @@ const CartSidebar = ({ open, onClose, cart, onUpdateQty, onRemove }) => {
             <span className="text-xl font-bold text-zinc-900">₹{subtotal.toLocaleString()}</span>
           </div>
           <button
+            onClick={onCheckout}
             className="w-full bg-gradient-to-r from-zinc-800 to-zinc-700 hover:from-zinc-900 hover:to-zinc-800 text-white py-3 rounded-xl font-semibold text-lg transition-all duration-300 shadow-xl hover:shadow-2xl"
             disabled={cart.length === 0}
           >

@@ -29,7 +29,7 @@ const About = () => {
   return (
     <div className="min-h-screen bg-zinc-100">
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-zinc-100 via-zinc-200 to-zinc-300 py-20 pt-32">
+      <div id="about-section" className="bg-gradient-to-br from-zinc-100 via-zinc-200 to-zinc-300 py-20 pt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-5xl lg:text-6xl font-bold text-zinc-900 mb-6">
@@ -139,7 +139,7 @@ const About = () => {
       </div>
 
       {/* Contact Section */}
-      <div className="py-20 bg-zinc-100">
+      <div id="contact-section" className="py-20 bg-zinc-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-zinc-900 mb-4">Get in Touch</h2>

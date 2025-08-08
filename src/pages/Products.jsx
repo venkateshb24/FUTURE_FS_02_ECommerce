@@ -139,8 +139,8 @@ const Products = ({ search, setSearch, onAddToCart }) => {
                 className="group bg-white/80 backdrop-blur-md border border-zinc-200 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col items-center p-7 hover:-translate-y-2 hover:border-zinc-300"
                 onClick={e => {
                   if (e.target.closest('button')) return;
-                  setPageProduct(getProductWithSpecs(product));
-                  setView('details');
+                  setModalProduct(getProductWithSpecs(product));
+                  setModalOpen(true);
                 }}
                 style={{ cursor: 'pointer' }}
               >

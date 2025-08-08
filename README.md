@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# TechStore E-Commerce Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+TechStore is a modern, responsive e-commerce web app for premium tech products. It features a beautiful UI, smooth navigation, and a complete shopping experience—all with no backend required.
 
-## Available Scripts
+## ✨ Features
 
-In the project directory, you can run:
+- **Landing Page:** Animated hero slider, highlights, and call-to-action buttons.
+- **Product Catalog:** Browse, search, and filter products by category. View product details in a modal or dedicated page.
+- **Cart Sidebar:** Add, update, and remove items. View subtotal and proceed to checkout.
+- **Checkout:** Simple form for shipping info and order summary. Demo order placement (no payment integration).
+- **Authentication:** Sign Up and Login modals (user data stored in localStorage).
+- **Navbar:** Responsive navigation, smooth scroll to About/Contact, cart badge, and user dropdown.
+- **About Page:** Mission, stats, team, and contact info.
+- **Footer:** Social links, quick navigation, support links, copyright.
+- **No backend required:** All data is local/demo only.
 
-### `npm start`
+## 🛠 Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React (functional components, hooks)
+- Tailwind CSS (utility-first styling)
+- LocalStorage (user authentication)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📁 Folder Structure
 
-### `npm test`
+- `src/components/` — Navbar, Footer, CartSidebar, ProductDetailsModal
+- `src/pages/` — Landing, Products, ProductPage, About, Checkout
+- `src/data/` — Product data (with images/specs)
+- `src/assets/` — Product images
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🚀 Getting Started
 
-### `npm run build`
+1. **Clone the repo:**
+   ```sh
+   git clone https://github.com/venkateshb24/FUTURE_FS_02_ECommerce.git
+   cd future_fs_02_e-commerce
+   ```
+2. **Install dependencies:**
+   ```sh
+   npm install
+   ```
+3. **Start the development server:**
+   ```sh
+   npm start
+   ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📝 Usage
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Browse products, view details, and add to cart.
+- Sign up or log in to access cart and checkout.
+- Update cart quantities, remove items, and place demo orders.
+- Use Navbar for navigation and smooth scroll to About/Contact.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🧩 Customization
 
-### `npm run eject`
+- Add new products in `src/data/products.js` and images in `src/assets/products/`.
+- Update styles via Tailwind classes.
+- Extend features (e.g., add reviews, payment integration, backend) as needed.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## ⚡ Limitations
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- No real payment or backend integration (demo/local only).
+- User authentication is mock/localStorage only.
+- Orders are not persisted after page reload.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 📄 License
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT
